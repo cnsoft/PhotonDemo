@@ -57,9 +57,10 @@ package character
 		[MetaEvent.CLICK]
 		public function fire(evt:MouseEvent):void
 		{
-			var bulletModel:BulletModel = new BulletModel;
+			var bulletModel:BulletModel = new BulletModel; //find a solution to pool this
 			
 			bulletModel.entityTransform.pos.copy(_characterModel.entityTransform.pos);
+			bulletModel.rotation = _characterModel.rotation;
 			
 			_shoot.dispatch(bulletModel);
 		}

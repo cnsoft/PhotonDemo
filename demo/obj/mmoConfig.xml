@@ -34,8 +34,7 @@
     <source-path append="true">
       <path-element>C:\Files\Prgdir\as\projects\3rd_party_libs_single\Photon-Flash_v3-0-1-0_Cloud_SDK\photon_loadbalancing_lib\classes</path-element>
       <path-element>C:\Files\Prgdir\as\projects\Svelto</path-element>
-      <path-element>C:\Files\Prgdir\as\projects\MMO\src</path-element>
-      <path-element>C:\Files\Prgdir\as\projects\3rd_party_libs_single\esDotDev-FastStats-270bd63\src</path-element>
+      <path-element>C:\Files\Prgdir\as\projects\PhotonDemo\PhotonDemo\demo\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop4\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
@@ -46,7 +45,7 @@
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>C:\Files\Prgdir\as\projects\MMO\src\Main.as</path-element>
+    <path-element>C:\Files\Prgdir\as\projects\PhotonDemo\PhotonDemo\demo\src\Main.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

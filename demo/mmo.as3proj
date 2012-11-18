@@ -15,10 +15,9 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="..\3rd_party_libs_single\Photon-Flash_v3-0-1-0_Cloud_SDK\photon_loadbalancing_lib\classes" />
-    <class path="..\Svelto" />
+    <class path="..\..\..\3rd_party_libs_single\Photon-Flash_v3-0-1-0_Cloud_SDK\photon_loadbalancing_lib\classes" />
+    <class path="..\..\..\Svelto" />
     <class path="src" />
-    <class path="..\3rd_party_libs_single\esDotDev-FastStats-270bd63\src" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -53,10 +52,10 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="..\Svelto\as3commons-reflect-1.6.2.swc" />
-    <element path="..\Svelto\as3commons-lang-0.3.6.swc" />
-    <element path="..\3rd_party_libs_single\Console2.7Beta\bin\Console.swc" />
-    <element path="..\3rd_party_libs_single\Photon-Flash_v3-0-1-0_Cloud_SDK\photon_library\PhotonCoreAS3.swc" />
+    <element path="..\..\..\Svelto\as3commons-reflect-1.6.2.swc" />
+    <element path="..\..\..\Svelto\as3commons-lang-0.3.6.swc" />
+    <element path="..\..\..\3rd_party_libs_single\Console2.7Beta\bin\Console.swc" />
+    <element path="..\..\..\3rd_party_libs_single\Photon-Flash_v3-0-1-0_Cloud_SDK\photon_library\PhotonCoreAS3.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

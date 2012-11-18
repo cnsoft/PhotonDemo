@@ -22,6 +22,7 @@ package character
 		
 		public function get worldTransform():Transformation { return _characterModel.entityTransform; }
 		
+		//signal
 		private function onEnterFrame(evt:Event):void
 		{
 			this.rotation = _characterModel.rotation;
