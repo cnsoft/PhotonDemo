@@ -1,8 +1,7 @@
 package photon 
 {
-	import character.CharacterInput;
+	import character.CharacterFactory;
 	import character.CharacterModel;
-	import character.CharacterView;
 	import de.exitgames.photon_as3.events.JoinEvent;
 	import de.exitgames.photon_as3.events.LeaveEvent;
 	import de.exitgames.photon_as3.loadBalancing.LoadBalancedPeer;
@@ -10,24 +9,18 @@ package photon
 	import photon.PhotonPeer;
 	import svelto.efw.entity.EntityDestroyer;
 	import svelto.efw.entity.EntityFactory;
-	import svelto.efw.entity.IEntity;
-	import svelto.efw.plugins.camera2D.CameraTarget;
-	import svelto.math.Vector2D;
 	
 	public class ActorSpanwer
 	{
-		private var _entityFactory:EntityFactory;
-		private var _entityDictionary:Dictionary;
+		private var _characterFactory:CharacterFactory;
+		private var _charactersCreatedInThisWorld:Dictionary;
 		private var _entityDestroyer:EntityDestroyer;
-		private var _gameInfo:GameInfo;
 		
-		function ActorSpanwer(entityFactor:EntityFactory, entityDestroyer:EntityDestroyer, gameInfo:GameInfo)
+		function ActorSpanwer(entityFactor:CharacterFactory, entityDestroyer:EntityDestroyer)
 		{
-			_entityDictionary = new Dictionary;
-			_entityFactory = entityFactor;
+			_charactersCreatedInThisWorld = new Dictionary(true);
+			_characterFactory = entityFactor;
 			_entityDestroyer = entityDestroyer;
-			
-			_gameInfo = gameInfo;
 			
 			PhotonPeer.getInstance().addEventListener(JoinEvent.TYPE, onUserJoin);
 			PhotonPeer.getInstance().addEventListener(LeaveEvent.TYPE, onUserLeft);
@@ -35,61 +28,55 @@ package photon
 		
 		private function onUserJoin(evt:JoinEvent):void
 		{
-			var peer:LoadBalancedPeer = PhotonPeer.getInstance();
-			
-			if (evt.getActorNo() == peer.getActorNo())
-			{
-				var characterModel:CharacterModel = new CharacterModel();
-				characterModel.id = peer.getActorNo();
-				
-				spawnActor(characterModel);
-				
-				updateUserList();
-			}
+			if (evt.getActorNo() == PhotonPeer.getInstance().getActorNo())
+				IJustJoined();
 			else
-			{
-				var characterServerModel:CharacterModel = new CharacterModel();
-				characterServerModel.id = evt.getActorNo();
-				
-				_entityDictionary[characterServerModel.id] = spawnServerActor(characterServerModel);
-			}
+				aFriendJoined(evt.getActorNo());
 		}
 		
 		private function onUserLeft(evt:LeaveEvent):void
 		{
-			_entityDestroyer.Destroy(_entityDictionary[evt.getActorNo()]);
+			if (_charactersCreatedInThisWorld[evt.getActorNo()] != undefined)
+			{
+				_entityDestroyer.Destroy(_charactersCreatedInThisWorld[evt.getActorNo()]);
 			
-			delete _entityDictionary[evt.getActorNo()];
+				delete _charactersCreatedInThisWorld[evt.getActorNo()];
+			}
 		}
 		
-		private function updateUserList():void
+		private function IJustJoined():void 
+		{
+			var characterModel:CharacterModel = new CharacterModel();
+			characterModel.id =  PhotonPeer.getInstance().getActorNo();
+			
+			_characterFactory.BuildHostCharacter(characterModel);
+			
+			addAlreadyJoinedCharacterAfterIJoined();
+		}
+		
+		private function addAlreadyJoinedCharacterAfterIJoined():void
         {
 			var peer:LoadBalancedPeer = PhotonPeer.getInstance();
             var l:Vector.<int> = peer.getActorNumbers();
-            for (var i:int = 0; i < l.length; i++)
+            
+			for (var i:int = 0; i < l.length; i++)
             {
 				if (l[i] != peer.getActorNo())
 				{
 					var characterServerModel:CharacterModel = new CharacterModel();
 					characterServerModel.id = l[i];
 					
-					_entityDictionary[characterServerModel.id] = spawnServerActor(characterServerModel);
+					_charactersCreatedInThisWorld[characterServerModel.id] = _characterFactory.BuildClientCharacter(characterServerModel);
 				}
             }
         }
 		
-		private function spawnActor(characterModel:CharacterModel):IEntity
+		private function aFriendJoined(friendID:int):void 
 		{
-			return _entityFactory.Build(new CharacterView(characterModel), 
-										new CharacterInput(characterModel),
-										new CameraTarget(characterModel.entityTransform, new Vector2D(_gameInfo.stage.stageWidth, _gameInfo.stage.stageHeight)),
-										characterModel);
-		}
-		
-		private function spawnServerActor(characterModel:CharacterModel):IEntity
-		{
-			return _entityFactory.Build(new CharacterView(characterModel),
-										characterModel);
+			var characterServerModel:CharacterModel = new CharacterModel();
+			characterServerModel.id = friendID;
+			
+			_charactersCreatedInThisWorld[characterServerModel.id] = _characterFactory.BuildClientCharacter(characterServerModel);
 		}
 	}
 }

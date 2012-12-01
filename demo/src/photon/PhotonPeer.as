@@ -32,15 +32,16 @@ package photon
 
             switch (eventCode)
             {
-
-                case GameConstants.EV_SENDPOS:
+				case GameConstants.EV_SENDPOS:
+				case GameConstants.EV_FIRED:
+				case GameConstants.EV_DEAD:
                 {
                     var actorEvent:ActorEvent = ActorEvent.create(eventCode, data);
                     
                     dispatchEvent(actorEvent);
                     break;
                 }
-
+				
 				default:
                 {
                     super.parseEventDataGame(eventCode, data);

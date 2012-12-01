@@ -2,6 +2,7 @@ package
 {
 	import com.junkbyte.console.Cc;
 	import com.junkbyte.console.KeyBind;
+	import flash.geom.Rectangle;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -11,6 +12,7 @@ package
 	
 	import photon.ConnectToServer;
 	
+	[SWF(frameRate="60")]
 	public class Main extends Sprite 
 	{
 		private var connect:ConnectToServer;
@@ -34,7 +36,9 @@ package
 			Cc.bindKey(new KeyBind(Keyboard.TAB), function():void { Cc.visible = !Cc.visible; } );
 			
 			// entry point
-			new StartGame(this.stage);
+			var layout:Sprite = new Sprite;
+			addChild(layout);
+			new StartGame(layout);
 						
 			connect = new ConnectToServer();
 			connect.connect();

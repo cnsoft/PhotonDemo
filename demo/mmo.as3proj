@@ -26,7 +26,7 @@
     <option benchmark="False" />
     <option es="False" />
     <option locale="" />
-    <option loadConfig="" />
+    <option loadConfig="C:\Files\Prgdir\as\projects\Svelto\svelto\svelto-config.xml" />
     <option optimize="True" />
     <option omitTraces="True" />
     <option showActionScriptWarnings="True" />
@@ -42,7 +42,7 @@
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="-keep-as3-metadata+=BindKey" />
+    <option additional="" />
     <option compilerConstants="" />
     <option minorVersion="" />
   </build>

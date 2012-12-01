@@ -1,13 +1,10 @@
 package bullet 
 {
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	
-	import svelto.efw.plugins.flash.IRenderableComponent;
+	import flash.events.Event;
 	import svelto.efw.plugins.camera2D.ITransformComponent;
 	import svelto.efw.plugins.camera2D.Transformation;
-	
-	import flash.events.Event;
+	import svelto.efw.plugins.flash.IRenderableComponent;
 	
 	[Embed(source = "../../art/swf/character.swf", symbol="Fireball")]
 	public class BulletView extends Sprite implements IRenderableComponent, ITransformComponent

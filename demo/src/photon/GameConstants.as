@@ -1,8 +1,9 @@
-package photon {
-	import de.exitgames.photon_as3.loadBalancing.model.constants.Constants;
-
-    public class GameConstants extends Constants
+package photon 
+{
+	public class GameConstants
     {
         public static const EV_SENDPOS:int = 1;
+		public static const EV_FIRED:int = 2;
+		public static const EV_DEAD:int = 3;
     }
 }

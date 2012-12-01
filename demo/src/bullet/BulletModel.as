@@ -4,7 +4,7 @@ package bullet
 	import svelto.efw.plugins.camera2D.Transformation;
 	import svelto.math.Vector2D;
 	
-	public class BulletModel implements IComponent
+	public class BulletModel
 	{
 		public var entityTransform:Transformation = new Transformation();
 		public var speed:Number;
@@ -17,8 +17,6 @@ package bullet
 		
 		function BulletModel()
 		{
-			speed = 550;
-			life = 4;
 			direction = new Vector2D;
 		}
 		
