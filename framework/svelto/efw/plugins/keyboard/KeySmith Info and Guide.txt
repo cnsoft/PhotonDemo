@@ -1,0 +1,66 @@
+KeySmith AS3 keyboard manager copyright 2011 Stephen Smith
+Version 1.3
+
+Changes:
+1.3	
+-Better implementation of Singleton pattern
+-Reverted member functions names. Doesn't affect usability.
+-Fixed a few bugs (improper function calls and warnings)
+-Removed ADDED_TO_STAGE event listener after it's been added.
+
+1.2
+-Fixed 'S' being right and 'D' being down.
+-Got rid of the derpy changeKeySet method, added much better implementation of it.
+-Renamed KeyboardManager to KeySmith to keep naming convention.
+-Added KeySmith.init() function. Must be called before using it.
+-Added singleton for KeySmith, now functions are accessed by calling KeySmith.<method name>
+
+1.1
+-Fixed copying over a key set changing that key set
+-Added an error message (given via trace()) in changeKeySet if no proper set was given.
+-Added two new methods: keyCodeState and prevKeyCodeState. Both check the state of a given key by its keyCode (e.g. Keyboard.A) instead of an alias.
+-Added a trace statement to the ADDED_TO_STAGE event to let the user know it should be loaded and working.
+
+Documentation: http://dl.dropbox.com/u/19614081/KeySmith%20Documentation/index.html
+
+Features include:
+-Every keyboard-based input you'd probably ever need
+-Key Aliasing
+-Dynamic changing of keycodes while keeping the same alias
+-101 preset aliases and 8 default setups for key sets
+-Ability to add in custom aliases without needing to modify base code
+-Checking which alias is tied to which key
+
+"Keyboard-based input" includes:
+-Current key states (Pressed, Up, Down)
+-Previous key states (Up, Down)
+-Current key combo states (Pressed, Up, Down)
+-Previous key combo states (Up, Down)
+-Current multiple key checks (if any given key is Pressed/Up/Down)
+-Previous multiple key checks (if any given key is Up/Down)
+
+"How do I set this up?"
+1: Download the zip folder.
+2: Add the KeySmith folder to your project folder.
+3: Be sure to import everything:
+	import KeySmithCode.KeySmith;
+	import KeySmithCode.Enums.Keys;
+	import KeySmithCode.Enums.KeySets;
+	import flash.ui.Keyboard;
+4: Your code should look something like this:
+	package Code {
+
+		import KeySmithCode.KeySmith;
+		import KeySmithCode.Enums.Keys;
+		import KeySmithCode.Enums.KeySets;
+		import flash.ui.Keyboard;
+		
+		public class Document extends MovieClip {
+			
+			public function Document() {
+				KeySmith.init(this);
+			}
+			//Rest of the class
+		}
+	}
+5: Access any methods needed by using KeySmith.<method>. For example: KeySmith.isKeyDown(Keys.ACTION);

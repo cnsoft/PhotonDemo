@@ -2,20 +2,17 @@ package
 {
 	import com.junkbyte.console.Cc;
 	import com.junkbyte.console.KeyBind;
-	import flash.geom.Rectangle;
-	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.ui.Keyboard;
-	
 	import photon.ConnectToServer;
 	
 	[SWF(frameRate="60")]
 	public class Main extends Sprite 
 	{
-		private var connect:ConnectToServer;
+		private var server:ConnectToServer;
 		
 		public function Main():void 
 		{
@@ -40,8 +37,8 @@ package
 			addChild(layout);
 			new StartGame(layout);
 						
-			connect = new ConnectToServer();
-			connect.connect();
+			server = new ConnectToServer();
+			server.connect();
 		}
 	}
 }

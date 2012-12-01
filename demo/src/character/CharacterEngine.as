@@ -79,7 +79,7 @@ package character
 		[MinFrequency(100)] //the metatag is meaningless right now
 		public function tick(timeDelta:Number):void
 		{
-			if (_hostAvatar == null)
+			if (_hostAvatar == null) //the tick handles only the local character
 				return;
 				
 			_timeCounter += timeDelta;

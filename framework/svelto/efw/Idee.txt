@@ -1,0 +1,9 @@
+se si implementa un injector, non c'è bisogno di usare getComponent.
+getComponents può essere gestito da una speciale funzione dell'injector, [InjectVectorOf] Vector<IComponent>
+CanDispatch/CanListen è utile per fare comunicare Entity tra di loro (?)
+EntityFactory dovrebbe essere iniettato
+usare la lista di richard
+no controllers
+mai accedere direttamente model
+pool per components
+modalita di comunicazione: command, mediator, event, metatag (input)

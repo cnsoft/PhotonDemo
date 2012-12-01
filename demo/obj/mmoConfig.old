@@ -33,8 +33,8 @@
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
       <path-element>C:\Files\Prgdir\as\projects\3rd_party_libs_single\Photon-Flash_v3-0-1-0_Cloud_SDK\photon_loadbalancing_lib\classes</path-element>
-      <path-element>C:\Files\Prgdir\as\projects\Svelto</path-element>
       <path-element>C:\Files\Prgdir\as\projects\PhotonDemo\PhotonDemo\demo\src</path-element>
+      <path-element>C:\Files\Prgdir\as\projects\PhotonDemo\PhotonDemo\framework</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop4\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">

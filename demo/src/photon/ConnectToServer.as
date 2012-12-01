@@ -1,7 +1,6 @@
 package photon 
 {
 	import com.junkbyte.console.Cc;
-	
 	import de.exitgames.photon_as3.events.*;
 	import de.exitgames.photon_as3.loadBalancing.LoadBalancedPeer;
 	import de.exitgames.photon_as3.loadBalancing.model.constants.ErrorCodes;
@@ -10,16 +9,19 @@ package photon
 	import de.exitgames.photon_as3.loadBalancing.model.vo.ActorProperties;
 	import de.exitgames.photon_as3.loadBalancing.model.vo.GameProperties;
 	import de.exitgames.photon_as3.response.*;
-	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.SecurityErrorEvent;
-	
 	import photon.PhotonPeer;
 	
 	public class ConnectToServer 
 	{
 		private var _peer:LoadBalancedPeer;
+		private const SERVER:String = "app.exitgamescloud.com";
+		private const PORT:int = 4530;
+		private const POLICYPORT:int = 843;
+		private const APPLICATIONID:String = "279173f6-e770-434a-94c7-bcdbd2cc472a"; //use your own app id here
+		private const APPLICATIONVERSION:String = "v1.0";
 		
 		function ConnectToServer() 
 		{
@@ -46,13 +48,7 @@ package photon
 		
 		public function connect():void
 		{
-			var server:String = "app.exitgamescloud.com";
-            var port:int = 4530;
-            var policyPort:int = 843;
-            var applicationId:String = "279173f6-e770-434a-94c7-bcdbd2cc472a";
-            var applicationVersion:String = "v1.0";
-			
-			_peer.establishBalancedConnection(server, port, policyPort, applicationId, applicationVersion);
+			_peer.establishBalancedConnection(SERVER, PORT, POLICYPORT, APPLICATIONID, APPLICATIONVERSION);
 		}
 		
 		private function onConnectedToGame(event:LoadBalancingStateEvent):void
@@ -87,7 +83,7 @@ package photon
 			var ap : ActorProperties = _peer.getLocalActorProperties();
 
 			ap = ActorProperties.createDefault();
-			ap.actorName = "Actor_" + Math.ceil(Math.random()*1000);
+			ap.actorName = "Actor_" + Math.ceil(Math.random() * 1000);
 			Cc.log("generated ActorProperties, actor name: " + ap.actorName);
 			_peer.setLocalActorProperties(ap);		
 			
@@ -123,11 +119,6 @@ package photon
         {
             Cc.log("=== APP onDisconnectingFromMaster: " + event.toString() + " ===");
         }
-
-        /**
-         * state event handlers
-         * used in this example to attach different screen controllers
-         */
 
         private function onLoadBalancingInit(event:LoadBalancingStateEvent):void
         {

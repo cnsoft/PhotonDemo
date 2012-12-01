@@ -36,9 +36,7 @@ package bullet
 			if (c is IBulletShooter)
 				(c as IBulletShooter).shoot.add(shoot);
 			else
-			{
 				_bullets[c] = true;
-			}
 		}
 		
 		public function remove(c:IComponent):void
